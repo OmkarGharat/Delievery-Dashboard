@@ -2,7 +2,57 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
+@model DelieveryDashboardModel;
+
+@* <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+ *@
+<style>
+    .grey-placeholder {
+        color: grey;
+        opacity: 1;
+    }
+
+    .h2-7 {
+        height: 2.7rem !important;
+    }
+
+    .top-7 {
+        top: -7px !important;
+    }
+
+    #AcualEfforts {
+        width: 30rem !important;
+    }
+</style>
+
+@using (Html.BeginForm("Submit", "Home", FormMethod.Post, new { id = "myForm", @class = "form-horizontal" }))
+{
+    <div class="row mb-3 text-center" style="box-shadow: 2px 2px 7px 0 rgb(0,0,0,0.2); padding: 1rem">
+        <div class="col-4 themed-grid-col">
+            <div class="form-group d-flex" style="flex-direction: column;">
+            <label for="UID" class="form-label col-sm-2 control-label top-7">UID</label>
+                @Html.TextBoxFor(m => m.UID, new {@maxlength = 8, @class = "form-control mt-2 mb-2 h2-7 p-2"})
+                @Html.ValidationMessageFor(m => m.UID, "", new {@class = "text-danger"})
+            </div>
+        </div>
+         <div class="col-4 themed-grid-col">
+            <div class="form-group d-flex" style="flex-direction: column;">
+                <label for="TaskId" class="form-label col-sm-2 control-label top-7">Task Id</label>
+                @Html.TextBoxFor(m => m.TaskId, new {@maxlength = 8, @class = "form-control mt-2 mb-2 h2-7 p-2"})
+                @Html.ValidationMessageFor(m => m.TaskId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+         <div class="col-4 themed-grid-col">
+            <div class="form-group d-flex" style="flex-direction: column;">
+                <label for="TaskDescription" class="form-label col-sm-2 control-label top-7">Task Description</label>
+                @Html.TextBoxFor(m => m.TaskDescription, new { @maxlength = 8, @class = "form-control mt-2 mb-2 h2-7 p-2" })
+                @Html.ValidationMessageFor(m => m.TaskDescription, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+    </div>
+}

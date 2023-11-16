@@ -15,6 +15,12 @@ namespace Delievery_Dashboard.Controllers
 
         public IActionResult Index()
         {
+            DelieveryDashboardModel dd = new();
+            return View(dd);
+        }
+
+        public IActionResult Submit()
+        {
             return View();
         }
 
