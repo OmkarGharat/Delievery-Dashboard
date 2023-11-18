@@ -1,0 +1,24 @@
+﻿@model FieldModel;
+
+<div class="form-group d-flex" style="flex-direction: column;">
+    <label for="@Model.Text" class="form-label col-sm-2 control-label top-7 w-100 text-left mt-4">@Model.Text</label>
+
+    @{
+        var ItemsWithDefault = new List<ItemsModel>
+    {
+    new ItemsModel {Text = "Please Select " + Model.Text, Value = "1"}
+    };
+        ItemsWithDefault.AddRange(Model.Items);
+    }
+
+    @Html.DropDownListFor(m => m.Items, new SelectList(ItemsWithDefault, "Value", "Text"),
+            new { @class = "form-select h2-7", style = "padding : 0 0 0 1rem;" })
+    @Html.ValidationMessageFor(m => m.Items, "", new { @class = "text-danger" })
+
+    <script>
+        window.onload = function () {
+            var optionToDisable = document.querySelector('option[value="1"]');
+            optionToDisable.disabled = true;
+        };
+    </script>
+</div>

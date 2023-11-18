@@ -30,29 +30,39 @@
 
 @using (Html.BeginForm("Submit", "Home", FormMethod.Post, new { id = "myForm", @class = "form-horizontal" }))
 {
-    <div class="row mb-3 text-center" style="box-shadow: 2px 2px 7px 0 rgb(0,0,0,0.2); padding: 1rem">
+    <div class="row mb-3 p-4 shadow" style="box-shadow: 2px 2px 7px 0 rgb(0,0,0,0.2);">
         <div class="col-4 themed-grid-col">
-            <div class="form-group d-flex" style="flex-direction: column;">
-            <label for="UID" class="form-label col-sm-2 control-label top-7">UID</label>
-                @Html.TextBoxFor(m => m.UID, new {@maxlength = 8, @class = "form-control mt-2 mb-2 h2-7 p-2"})
-                @Html.ValidationMessageFor(m => m.UID, "", new {@class = "text-danger"})
+            <div class="form-group d-flex flex-column">
+                <label for="UID" class="form-label col-sm-2 control-label top-7">UID</label>
+                @Html.TextBoxFor(m => m.UID, new { @maxlength = 8, @class = "form-control mt-2 mb-2 h2-7 p-2" })
+                @Html.ValidationMessageFor(m => m.UID, "", new { @class = "text-danger" })
             </div>
         </div>
-         <div class="col-4 themed-grid-col">
-            <div class="form-group d-flex" style="flex-direction: column;">
+        <div class="col-4 themed-grid-col">
+            <div class="form-group d-flex flex-column">
                 <label for="TaskId" class="form-label col-sm-2 control-label top-7">Task Id</label>
-                @Html.TextBoxFor(m => m.TaskId, new {@maxlength = 8, @class = "form-control mt-2 mb-2 h2-7 p-2"})
+                @Html.TextBoxFor(m => m.TaskId, new { @class = "form-control mt-2 mb-2 h2-7 p-2" })
                 @Html.ValidationMessageFor(m => m.TaskId, "", new { @class = "text-danger" })
             </div>
         </div>
-         <div class="col-4 themed-grid-col">
-            <div class="form-group d-flex" style="flex-direction: column;">
-                <label for="TaskDescription" class="form-label col-sm-2 control-label top-7">Task Description</label>
-                @Html.TextBoxFor(m => m.TaskDescription, new { @maxlength = 8, @class = "form-control mt-2 mb-2 h2-7 p-2" })
+        <div class="col-4 themed-grid-col">
+            <div class="form-group d-flex flex-column">
+                <label for="TaskDescription" class="form-label col-sm-2 control-label top-7 w-100">Task Description</label>
+                @Html.TextBoxFor(m => m.TaskDescription, new { @class = "form-control mt-2 mb-2 h2-7 p-2" })
                 @Html.ValidationMessageFor(m => m.TaskDescription, "", new { @class = "text-danger" })
             </div>
         </div>
 
 
+    </div>
+
+    <div class="row mb-3 p-4 shadow" style="box-shadow: 2px 2px 7px 0 rgb(0,0,0,0.2);">
+    @* <div class="row mb-3 p-4 shadow"> *@
+        @foreach (var field in Model.Fields)
+        {
+            <div class="col-4 themed-grid-col">
+                @await Html.PartialAsync("_DropDownPartial", field)
+            </div>
+        }
     </div>
 }
