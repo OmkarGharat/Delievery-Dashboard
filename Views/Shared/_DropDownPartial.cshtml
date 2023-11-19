@@ -2,23 +2,15 @@
 
 <div class="form-group d-flex" style="flex-direction: column;">
     <label for="@Model.Text" class="form-label col-sm-2 control-label top-7 w-100 text-left mt-4">@Model.Text</label>
-
-    @{
-        var ItemsWithDefault = new List<ItemsModel>
-    {
-    new ItemsModel {Text = "Please Select " + Model.Text, Value = "1"}
-    };
-        ItemsWithDefault.AddRange(Model.Items);
-    }
-
-    @Html.DropDownListFor(m => m.Items, new SelectList(ItemsWithDefault, "Value", "Text"),
-            new { @class = "form-select h2-7", style = "padding : 0 0 0 1rem;" })
-    @Html.ValidationMessageFor(m => m.Items, "", new { @class = "text-danger" })
-
-    <script>
-        window.onload = function () {
-            var optionToDisable = document.querySelector('option[value="1"]');
-            optionToDisable.disabled = true;
-        };
-    </script>
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle w-100 mt-1 mb-2 h2-7" style="background-color: #f8fbfb; color: #727070; border-color: #d7d3d3;" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Please Select @Model.Text
+        </button>
+        <ul class="dropdown-menu" style="width: 21.2rem;">
+            @foreach (var item in Model.Items)
+            {
+                <li><a class="dropdown-item" href="#">@item.Text</a></li>
+            }
+        </ul>
+    </div>
 </div>
