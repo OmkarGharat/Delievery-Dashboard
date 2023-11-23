@@ -1,4 +1,5 @@
 ﻿using Delievery_Dashboard.Models;
+using Delievery_Dashboard.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -15,8 +16,12 @@ namespace Delievery_Dashboard.Controllers
 
         public IActionResult Index()
         {
-            DelieveryDashboardModel dd = new();
-            return View(dd);
+            var model = new CombinedViewModel
+            {
+                DelieveryDashboard = new DelieveryDashboardModel(),
+                TextBox = new TextBoxViewModel()
+            };
+            return View(model);
         }
 
         public IActionResult Submit()

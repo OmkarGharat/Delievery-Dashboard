@@ -1,0 +1,17 @@
+﻿@model Delievery_Dashboard.ViewModel.TextBoxViewModel;
+
+@{
+    var properties = ViewData.ModelMetadata.Properties;
+}
+
+@foreach(var property in properties)
+{
+    <div class="form-group d-flex flex-column">
+        <label for="@property.PropertyName" class="form-label col-sm-2 control-label top-7 w-100 text-left">@property.GetDisplayName()</label>
+        @{
+            var propertyValue = Model.GetType().GetProperty(property.PropertyName).GetValue(Model, null);
+        }
+        @Html.TextBoxFor(model => propertyValue, new {@class = "form-control mt-2 mb-2 h2-7 p-2"})
+        @Html.ValidationMessageFor(model => propertyValue, "", new {@class = "text-danger"})
+    </div>
+}
