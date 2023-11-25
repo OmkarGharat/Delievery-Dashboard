@@ -26,17 +26,15 @@
 
 @using (Html.BeginForm("Submit", "Home", FormMethod.Post, new { id = "myForm", @class = "form-horizontal" }))
 {
-    <div class="row mb-3 p-4 shadow" style="box-shadow: 2px 2px 7px 0 rgb(0,0,0,0.2);">
-        <div class="col-4 themed-grid-col">
-            <div class="form-group d-flex flex-column">
-                @await Html.PartialAsync("_TextBoxPartial", Model.TextBox)
-            </div>
-        </div>
+    <div class="row mb-3 p-4 shadow">
+        <div class="themed-grid-col w-100 d-flex justify-content-evenly align-items-center">
 
-        <div class="col-4 themed-grid-col">
-            <div class="form-group d-flex flex-column">
+            @await Html.PartialAsync("_TextBoxPartial", Model.TextBox)
+
+            <div class="form-group d-flex flex-column w-100">
                 <label for="TaskDescription" class="form-label col-sm-2 top-7 w-100">Task Description</label>
-                @Html.TextAreaFor(m => m.DelieveryDashboard.TaskDescription, new { @class = "form-control mt-2 mb-2 p-2", id = "TaskDescription" })
+                @Html.TextAreaFor(m => m.DelieveryDashboard.TaskDescription, new { @class = "form-control mt-2 mb-2 p-2", id = "TaskDescription", rows = "2", 
+                @style = "height: 43.19px;" })
                 @Html.ValidationMessageFor(m => m.DelieveryDashboard.TaskDescription, "", new { @class = "text-danger" })
             </div>
         </div>
