@@ -4,14 +4,19 @@
     var properties = ViewData.ModelMetadata.Properties;
 }
 
-@foreach(var property in properties)
+@foreach (var property in properties)
 {
     <div class="form-group d-flex flex-column">
         <label for="@property.PropertyName" class="form-label col-sm-2 control-label top-7 w-100 text-left">@property.GetDisplayName()</label>
+
         @{
             var propertyValue = Model.GetType().GetProperty(property.PropertyName).GetValue(Model, null);
+            var propertyName = property.PropertyName;
+            var errorContainerId = "error_" + propertyName;
         }
-        @Html.TextBoxFor(model => propertyValue, new {@class = "form-control mt-2 mb-2 h2-7 p-2"})
-        @Html.ValidationMessageFor(model => propertyValue, "", new {@class = "text-danger"})
+
+        <input class="form-control mt-2 mb-2 h2-7 p-2" id="@propertyName" name="@propertyName" type="text" value="0">
+        <span class="text-danger field-validation-valid" data-valmsg-for="@propertyName" data-valmsg-replace="true"></span>
+        <div id="@errorContainerId"></div>
     </div>
 }
