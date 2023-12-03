@@ -27,17 +27,9 @@ namespace Delievery_Dashboard.Controllers
 
         public IActionResult Submit(CombinedViewModel model)
         {
-            if (ModelState.IsValid)
-            {
                 ViewBag.UID = model.TextBox.UID;
                 ViewBag.TaskID = model.TextBox.TaskID;
                 ViewBag.TaskDescription = model.DelieveryDashboard.TaskDescription;
-            }
-            else
-            {
-                var errors = ModelState.Values.SelectMany(v => v.Errors);
-                return View(model);
-            }
             return View();
         }
 
