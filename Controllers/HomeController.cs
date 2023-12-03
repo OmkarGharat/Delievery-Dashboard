@@ -14,18 +14,30 @@ namespace Delievery_Dashboard.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(DatesViewModel datesViewModel)
         {
             var model = new CombinedViewModel
             {
                 DelieveryDashboard = new DelieveryDashboardModel(),
                 TextBox = new TextBoxViewModel()
+                //Dates = new List<DatesViewModel> { datesViewModel }, 
             };
             return View(model);
         }
 
-        public IActionResult Submit()
+        public IActionResult Submit(CombinedViewModel model)
         {
+            if (ModelState.IsValid)
+            {
+                ViewBag.UID = model.TextBox.UID;
+                ViewBag.TaskID = model.TextBox.TaskID;
+                ViewBag.TaskDescription = model.DelieveryDashboard.TaskDescription;
+            }
+            else
+            {
+                var errors = ModelState.Values.SelectMany(v => v.Errors);
+                return View(model);
+            }
             return View();
         }
 

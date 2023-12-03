@@ -1,9 +1,9 @@
-﻿namespace Delievery_Dashboard.Models
+﻿using Delievery_Dashboard.ViewModel;
+
+namespace Delievery_Dashboard.Models
 {
     public class DelieveryDashboardModel
     {
-        public string UID { get; set; }
-        public string TaskId { get; set; }
         public string TaskDescription { get; set; }
         public List<FieldModel> Fields { get; set; }
 
@@ -102,8 +102,6 @@
             }
         }
 
-        public List<ItemsModel> Classification { get; set; }
-        public List<ItemsModel> Complexity { get; set; }
-        public List<ItemsModel> Resources { get; set; }
+        public List<DatesViewModel> Dates { get; set; }
     }
 }

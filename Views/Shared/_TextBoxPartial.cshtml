@@ -15,8 +15,8 @@
             var errorContainerId = "error_" + propertyName;
         }
 
-        <input class="form-control mt-2 mb-2 h2-7 p-2" id="@propertyName" name="@propertyName" type="text" value="0">
-        <span class="text-danger field-validation-valid" data-valmsg-for="@propertyName" data-valmsg-replace="true"></span>
+        <input class="form-control mt-2 mb-2 h2-7 p-2" id="@propertyName" name="TextBox.@propertyName" type="text" value="0">
+        <span class="text-danger field-validation-valid" data-valmsg-for="TextBox.@propertyName" data-valmsg-replace="true"></span>
         <div id="@errorContainerId"></div>
      </div> 
 }
