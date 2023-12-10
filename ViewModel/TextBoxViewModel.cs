@@ -7,8 +7,9 @@ namespace Delievery_Dashboard.ViewModel
     {
         [Required]
         [RegularExpression(@"^\d{8}$", ErrorMessage = "UID must be exactly 8 digits.")]
-        public int UID { get; set; }
-        [Required] [DisplayName("Task ID")]
+        public int? UID { get; set; }
+        [Required] 
+        [DisplayName("Task ID")]
         [RegularExpression(@"^[a-zA-Z0-9_-]+$", ErrorMessage = "Task ID can only include alphabets, numbers, underscores, and hyphens.")]
         public string TaskID { get; set; }
 

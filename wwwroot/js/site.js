@@ -7,7 +7,6 @@
 window.onload = function () {
 
     var uid = document.getElementById('UID');
-    //var errorMainList = document.getElementById('errorMainList');
     var TaskID = document.getElementById('TaskID');
 
 
@@ -15,6 +14,9 @@ window.onload = function () {
 
         var errors = [];
 
+        if (uid.value == null) {
+            errors.push("UID cannot be null");
+        }
 
         if (!/^\d+$/.test(uid.value)) {
             errors.push("UID only allows numbers");
@@ -34,6 +36,10 @@ window.onload = function () {
 
     TaskID.addEventListener('change', () => {
         var errors = [];
+
+        if (TaskID.value == null) {
+            errors.push("Task ID cannot be null")
+        }
 
         if (/\s/i.test(TaskID.value)) {
             errors.push("Task ID can't contain white spaces");
@@ -56,4 +62,39 @@ window.onload = function () {
             })
         }
     }
+
+    var DropDownMenu = document.getElementById('DropDownMenu');
+    var DropDownItems = document.querySelectorAll('.dropdown-item');
+
+    DropDownItems.forEach(function (item) {
+        item.addEventListener('click', function (e) {
+            var DropDownMenu = e.target.closest('.dropdown').querySelector('.dropdown-toggle');
+            DropDownMenu.textContent = e.target.textContent;
+        });
+    });
+
+    (() => {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+                if (!form.checkValidity()) {
+                    event.preventDefault()
+                    event.stopPropagation()
+                }
+
+                form.classList.add('was-validated')
+            }, false)
+        })
+    })
+
+    if (uid.value == 0 || TaskID == null || TaskID == 0) {
+        var inputField = document.querySelectorAll('.correct');
+        inputField.classList.add("error");
+    }
+    
 }

@@ -14,19 +14,3 @@
         </ul>
     </div>
 </div>
-
-<script>
-    window.onload = function () {
-        var DropDownMenu = document.getElementById('DropDownMenu');
-        var DropDownItems = document.querySelectorAll('.dropdown-item');
-
-        DropDownItems.forEach(function (item) 
-        {
-            item.addEventListener('click', function (e) 
-            {
-                var DropDownMenu = e.target.closest('.dropdown').querySelector('.dropdown-toggle');
-                DropDownMenu.textContent = e.target.textContent;
-            });
-        });
-    }
-</script>

@@ -24,7 +24,7 @@
     }
 </style>
 
-@using (Html.BeginForm("Submit", "Home", FormMethod.Post, new { id = "myForm", @class = "form-horizontal" }))
+@using (Html.BeginForm("Submit", "Home", FormMethod.Post, new { id = "myForm", @class = "form-horizontal needs-validation" }))
 {
     <div class="row mb-3 p-4 shadow">
         <div class="themed-grid-col w-100 d-flex justify-content-evenly align-items-center">
@@ -32,28 +32,53 @@
             @await Html.PartialAsync("_TextBoxPartial", Model.TextBox)
 
             <div class="form-group d-flex flex-column w-100">
-                <label for="TaskDescription" class="form-label col-sm-2 top-7 w-100">Task Description</label>
-                @Html.TextAreaFor(m => m.DelieveryDashboard.TaskDescription, new { @class = "form-control mt-2 mb-2 p-2", id = "TaskDescription", rows = "2", 
-                @style = "height: 43.19px;" })
+                @* <label for="TaskDescription" class="form-label col-sm-2 top-7 w-100"></label> *@
+                @Html.LabelFor(m => m.DelieveryDashboard.TaskDescription, new { @class = "form-label col-sm-2 top-7 w-100" })
+                @Html.TextAreaFor(m => m.DelieveryDashboard.TaskDescription, new
+                    {
+                        @class = "form-control mt-2 mb-2 p-2",
+                        id = "TaskDescription",
+                        rows = "2",
+                        @style = "height: 43.19px;"
+                    })
                 @Html.ValidationMessageFor(m => m.DelieveryDashboard.TaskDescription, "", new { @class = "text-danger" })
             </div>
         </div>
     </div>
 
+
     <div class="row mb-3 p-4 shadow" style="box-shadow: 2px 2px 7px 0 rgb(0,0,0,0.2);">
-        @foreach (var field in Model.DelieveryDashboard.Fields)
-        {
-            <div class="col-4 themed-grid-col">
-                @await Html.PartialAsync("_DropDownPartial", field)
-            </div>
-        }
+        <div class="col-4 themed-grid-col">
+            @await Html.PartialAsync("_ComplexityDropDown", Model.DelieveryDashboard)
+        </div>
+        <div class="col-4 themed-grid-col">
+            @await Html.PartialAsync("_ClassificationDropDown", Model.DelieveryDashboard)
+        </div>
+        <div class="col-4 themed-grid-col">
+            @await Html.PartialAsync("_ResourcesDropDown", Model.DelieveryDashboard)
+        </div> 
+        <div class="col-4 themed-grid-col">
+            @await Html.PartialAsync("_AssetDropDown", Model.DelieveryDashboard)
+        </div>
+        <div class="col-4 themed-grid-col">
+            @await Html.PartialAsync("_PracticeHeadDropDown", Model.DelieveryDashboard)
+        </div> 
+        <div class="col-4 themed-grid-col">
+            @await Html.PartialAsync("_AccountManagerDropDown", Model.DelieveryDashboard)
+        </div>
+        <div class="col-4 themed-grid-col">
+            @await Html.PartialAsync("_DeliveryManagerDropDown", Model.DelieveryDashboard)
+        </div>
+        <div class="col-4 themed-grid-col">
+            @await Html.PartialAsync("_RoleDropDown", Model.DelieveryDashboard)
+        </div>
     </div>
 
     <div class="col-12">
         <button class="btn btn-primary" type="submit">Submit form</button>
     </div>
 
-   @*  <div class="row mb-3 p-4 shadow" style="box-shadow: 2px 2px 7px 0 rgb(0,0,0,0.2);">
+    @*  <div class="row mb-3 p-4 shadow" style="box-shadow: 2px 2px 7px 0 rgb(0,0,0,0.2);">
         @foreach (var selectDate in Model.Dates)
         {
             <div class="themed-grid-col d-flex">

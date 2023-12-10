@@ -14,22 +14,36 @@ namespace Delievery_Dashboard.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index(DatesViewModel datesViewModel)
+        public IActionResult Index()
         {
             var model = new CombinedViewModel
             {
                 DelieveryDashboard = new DelieveryDashboardModel(),
-                TextBox = new TextBoxViewModel()
-                //Dates = new List<DatesViewModel> { datesViewModel }, 
+                TextBox = new TextBoxViewModel(),
             };
+
             return View(model);
         }
 
         public IActionResult Submit(CombinedViewModel model)
         {
-                ViewBag.UID = model.TextBox.UID;
-                ViewBag.TaskID = model.TextBox.TaskID;
-                ViewBag.TaskDescription = model.DelieveryDashboard.TaskDescription;
+            ViewBag.UID = model.TextBox.UID;
+            ViewBag.TaskID = model.TextBox.TaskID;
+            ViewBag.TaskDescription = model.DelieveryDashboard.TaskDescription;
+            ViewBag.Classification = model.DelieveryDashboard.Classification;
+            ViewBag.Complexity = model.DelieveryDashboard.Complexity;
+            ViewBag.Resource = model.DelieveryDashboard.Resource;
+            ViewBag.Asset = model.DelieveryDashboard.Asset;
+            ViewBag.PracticeHead = model.DelieveryDashboard.PracticeHead;
+            ViewBag.AccountManager = model.DelieveryDashboard.AccountManager;
+            ViewBag.DeliveryManager = model.DelieveryDashboard.DeliveryManager;
+            ViewBag.Role = model.DelieveryDashboard.Role;
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
             return View();
         }
 
