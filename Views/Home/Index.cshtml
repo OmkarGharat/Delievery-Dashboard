@@ -56,13 +56,13 @@
         </div>
         <div class="col-4 themed-grid-col">
             @await Html.PartialAsync("_ResourcesDropDown", Model.DelieveryDashboard)
-        </div> 
+        </div>
         <div class="col-4 themed-grid-col">
             @await Html.PartialAsync("_AssetDropDown", Model.DelieveryDashboard)
         </div>
         <div class="col-4 themed-grid-col">
             @await Html.PartialAsync("_PracticeHeadDropDown", Model.DelieveryDashboard)
-        </div> 
+        </div>
         <div class="col-4 themed-grid-col">
             @await Html.PartialAsync("_AccountManagerDropDown", Model.DelieveryDashboard)
         </div>
@@ -72,20 +72,54 @@
         <div class="col-4 themed-grid-col">
             @await Html.PartialAsync("_RoleDropDown", Model.DelieveryDashboard)
         </div>
+
+        <div class="col-4 themed-grid-col">
+            @Html.LabelFor(m => m.DelieveryDashboard.PlanStartDate)
+            @Html.EditorFor(m => m.DelieveryDashboard.PlanStartDate, new { htmlAttributes = new { @class = "form-control datepicker", @type = "date", @id = "PlanStartDate" } })
+        </div>
+
+        <div class="col-4 themed-grid-col">
+            @Html.LabelFor(m => m.DelieveryDashboard.PlanEndDate)
+            @Html.EditorFor(m => m.DelieveryDashboard.PlanEndDate, new { htmlAttributes = new { @class = "form-control datepicker", @type = "date", @id = "PlanEndDate" } })
+        </div>
+
+        <div class="col-4 themed-grid-col">
+            @Html.LabelFor(m => m.DelieveryDashboard.ActualStartDate)
+            @Html.EditorFor(m => m.DelieveryDashboard.ActualStartDate, new { htmlAttributes = new { @class = "form-control datepicker", @type = "date", @id = "ActualStartDate" } })
+        </div>
+
+        <div class="col-4 themed-grid-col">
+            @Html.LabelFor(m => m.DelieveryDashboard.ActualEndDate)
+            @Html.EditorFor(m => m.DelieveryDashboard.ActualEndDate, new { htmlAttributes = new { @class = "form-control datepicker", @type = "date", @id = "ActualEndDate" } })
+        </div>
+
     </div>
 
     <div class="col-12">
         <button class="btn btn-primary" type="submit">Submit form</button>
     </div>
 
-    @*  <div class="row mb-3 p-4 shadow" style="box-shadow: 2px 2px 7px 0 rgb(0,0,0,0.2);">
-        @foreach (var selectDate in Model.Dates)
-        {
-            <div class="themed-grid-col d-flex">
-                @await Html.PartialAsync("_DatesPartial", selectDate)
-            </div>
-        }
-    </div> *@
-
-
 }
+
+<script>
+    $(function () {
+        var today = new Date().toISOString().split('T')[0];
+
+        function handleDateChange() {
+            var selectedValue = $(this).val();
+            console.log("Selected Date: " + selectedValue);
+        }
+
+        // Get today's date in the format 'YYYY-MM-DD'
+        var today = new Date().toISOString().split('T')[0];
+
+        // Set the default value for all datepickers
+        $(".datepicker").val(today);
+
+        // Attach the change event handler to all datepickers
+        $(".datepicker").change(handleDateChange);
+
+    });
+
+
+</script>

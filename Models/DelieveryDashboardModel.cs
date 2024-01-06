@@ -24,6 +24,27 @@ namespace Delievery_Dashboard.Models
         public string DeliveryManager { get; set; }
         [Required]
         public string Role { get; set; }
+
+        [Required]
+        [DataType(DataType.Date)]
+        [DisplayName("Plan Start Date")]
+        public DateTime PlanStartDate { get; set; }
+        [Required]
+        [DataType(DataType.Date)]
+        [DisplayName("Plan End Date")]
+        public DateTime PlanEndDate { get; set; }
+        [Required]
+        [DataType(DataType.Date)]
+        [DisplayName("Actual Start Date")]
+        public DateTime ActualStartDate { get; set; }
+        [Required]
+        [DataType(DataType.Date)]
+        [DisplayName("Actual End Date")]
+        public DateTime ActualEndDate { get; set; }
+
+
+
+
     };
 
     //private void SortListByName (string listName)
